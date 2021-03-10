@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "Htd/KMT0qmr+XxxqW1WKH2j/rdYP73LIfSdjZksqK87NLhlTbbFGm3JhxkMycbXddzzJTnToWDkOKl+aSGa7+g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Lukas\\Documents\\GitHub\\Sixmax-Utils\\SXUtils\\SXUtils\\SXUtils.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Lukas\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\Lukas\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\Lukas\\.nuget\\packages\\system.drawing.common\\5.0.2\\system.drawing.common.5.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

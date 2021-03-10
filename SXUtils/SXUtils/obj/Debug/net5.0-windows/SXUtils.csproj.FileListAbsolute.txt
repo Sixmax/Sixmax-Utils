@@ -1,0 +1,12 @@
+C:\Users\Lukas\Documents\GitHub\Sixmax-Utils\SXUtils\SXUtils\bin\Debug\net5.0-windows\SXUtils.deps.json
+C:\Users\Lukas\Documents\GitHub\Sixmax-Utils\SXUtils\SXUtils\bin\Debug\net5.0-windows\SXUtils.dll
+C:\Users\Lukas\Documents\GitHub\Sixmax-Utils\SXUtils\SXUtils\bin\Debug\net5.0-windows\ref\SXUtils.dll
+C:\Users\Lukas\Documents\GitHub\Sixmax-Utils\SXUtils\SXUtils\bin\Debug\net5.0-windows\SXUtils.pdb
+C:\Users\Lukas\Documents\GitHub\Sixmax-Utils\SXUtils\SXUtils\obj\Debug\net5.0-windows\SXUtils.csprojAssemblyReference.cache
+C:\Users\Lukas\Documents\GitHub\Sixmax-Utils\SXUtils\SXUtils\obj\Debug\net5.0-windows\SXUtils.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lukas\Documents\GitHub\Sixmax-Utils\SXUtils\SXUtils\obj\Debug\net5.0-windows\SXUtils.AssemblyInfoInputs.cache
+C:\Users\Lukas\Documents\GitHub\Sixmax-Utils\SXUtils\SXUtils\obj\Debug\net5.0-windows\SXUtils.AssemblyInfo.cs
+C:\Users\Lukas\Documents\GitHub\Sixmax-Utils\SXUtils\SXUtils\obj\Debug\net5.0-windows\SXUtils.csproj.CoreCompileInputs.cache
+C:\Users\Lukas\Documents\GitHub\Sixmax-Utils\SXUtils\SXUtils\obj\Debug\net5.0-windows\SXUtils.dll
+C:\Users\Lukas\Documents\GitHub\Sixmax-Utils\SXUtils\SXUtils\obj\Debug\net5.0-windows\ref\SXUtils.dll
+C:\Users\Lukas\Documents\GitHub\Sixmax-Utils\SXUtils\SXUtils\obj\Debug\net5.0-windows\SXUtils.pdb
