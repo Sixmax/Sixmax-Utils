@@ -3,6 +3,8 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
@@ -134,12 +136,29 @@ namespace SXUtils.Extensions
             return bImg;
         }
 
-
         /// <summary>
         /// Convert a Image to a Bitmap.
         /// </summary>
         /// <param name="img"></param>
         /// <returns></returns>
         public static Bitmap ToBitmap(this Image img) => (Bitmap)img;
+
+        /// <summary>
+        /// Gets a BitmapImage from a Url. Difference from using the Builtin Image Fetch is that in the Built-in one, the StreamSource would be null. With this, there is a StreamSource.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public static async Task<BitmapImage> FromUrl(this BitmapImage input, string url)
+        {
+            if (string.IsNullOrEmpty(url))
+                throw new ArgumentNullException("The Url cannot be Null or an Empty string.");
+
+            using (HttpClient imgClient = new HttpClient())
+            {
+                HttpResponseMessage imgResp = await imgClient.GetAsync(url);
+                return ((Bitmap)Image.FromStream(await imgResp.Content.ReadAsStreamAsync())).ToBitmapImage();
+            }       
+        }
     }
 }
