@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,6 +27,25 @@ namespace SXUtils.Helpers
             };
 
             return r;
+        }
+
+        /// <summary>
+        /// Check if a Object contains a specific Method.
+        /// </summary>
+        /// <param name="objectToCheck"></param>
+        /// <param name="methodName"></param>
+        /// <returns></returns>
+        public static bool HasMethod(this object objectToCheck, string methodName)
+        {
+            try
+            {
+                var type = objectToCheck.GetType();
+                return type.GetMethod(methodName) != null;
+            }
+            catch (AmbiguousMatchException)
+            {
+                return true;
+            }
         }
     }
 }
