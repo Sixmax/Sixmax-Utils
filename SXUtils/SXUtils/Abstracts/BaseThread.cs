@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SXUtils.Abstracts
 {
-    abstract class BaseThread
+    public abstract class BaseThread
     {
         /// <summary>
         /// Is the Thread current Active?

@@ -4,9 +4,11 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace SXUtils.Extensions
@@ -26,10 +28,10 @@ namespace SXUtils.Extensions
 
             using (Graphics g = Graphics.FromImage(RoundedImage))
             {
-                g.Clear(Color.Transparent);
+                g.Clear(System.Drawing.Color.Transparent);
                 g.SmoothingMode = SmoothingMode.AntiAlias;
 
-                Brush brush = new TextureBrush(StartImage);
+                System.Drawing.Brush brush = new TextureBrush(StartImage);
 
                 Func<int, GraphicsPath> GetPath = (int r) =>
                 {
@@ -64,7 +66,7 @@ namespace SXUtils.Extensions
                 if (OutlineRadius != null
                     && (CornerRadius - (int)OutlineRadius) > 0)
                 {
-                    g.FillPath(Brushes.Black, GetPath(CornerRadius));
+                    g.FillPath(System.Drawing.Brushes.Black, GetPath(CornerRadius));
                     g.FillPath(brush, GetPath(CornerRadius - (int)OutlineRadius));
                 }
                 else
@@ -81,7 +83,7 @@ namespace SXUtils.Extensions
         /// <param name="color"></param>
         /// <param name="MakeTransparent"></param>
         /// <returns></returns>
-        public static Bitmap SetTintColor(this Bitmap input, Color color, bool MakeTransparent = true)
+        public static Bitmap SetTintColor(this Bitmap input, System.Drawing.Color color, bool MakeTransparent = true)
         {
             Bitmap result = new Bitmap(input.Width, input.Height, input.PixelFormat);
 
@@ -89,7 +91,7 @@ namespace SXUtils.Extensions
             {
                 for (int y = 0; y < input.Height - 1; y++)
                 {
-                    Color pixel = input.GetPixel(x, y);
+                    System.Drawing.Color pixel = input.GetPixel(x, y);
 
                     if (pixel.R == 0 && pixel.G == 0 && pixel.B == 0 && pixel.A == 0) // skip transparent pixels 
                         continue;
@@ -136,6 +138,27 @@ namespace SXUtils.Extensions
             return bImg;
         }
 
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool DeleteObject([In] IntPtr hObject);
+
+        public static ImageSource ToImageSource(this Bitmap bmp)
+        {
+            var handle = bmp.GetHbitmap();
+            try
+            {
+                ImageSource newSource = Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+
+                DeleteObject(handle);
+                return newSource;
+            }
+            catch 
+            {
+                DeleteObject(handle);
+                return null;
+            }
+        }
+
         /// <summary>
         /// Convert a Image to a Bitmap.
         /// </summary>
@@ -160,5 +183,13 @@ namespace SXUtils.Extensions
                 return ((Bitmap)Image.FromStream(await imgResp.Content.ReadAsStreamAsync())).ToBitmapImage();
             }       
         }
+
+        /// <summary>
+        /// Converts a Bitmap to a Brush which can then be used as Background for (for example) a Canvas. 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static System.Windows.Media.Brush ToBrush(this Bitmap input) => new ImageBrush(input.ToBitmapSource());
+        
     }
 }

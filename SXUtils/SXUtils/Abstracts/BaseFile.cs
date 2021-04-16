@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SXUtils.Abstracts
 {
-    class BaseFile
+    public abstract class BaseFile
     {
         private readonly object lock1 = new object();
         private readonly object lock2 = new object();
